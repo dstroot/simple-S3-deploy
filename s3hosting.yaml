@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS S3 Hosting
+Parameters:
+  Name:
+    Type: String
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: PublicRead
+      BucketName: !Sub ${Name}
+      WebsiteConfiguration:
+        ErrorDocument: index.html
+        IndexDocument: index.html
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: S3Bucket
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetObject
+            Effect: Allow
+            Principal: "*"
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:aws:s3:::"
+                  - Ref: S3Bucket
+                  - /*
+            Sid: PublicReadForGetBucketObjects
+Outputs:
+  WebsiteURL:
+    Value: !GetAtt [S3Bucket, WebsiteURL]
+    Description: URL for website hosted on S3
+  S3BucketSecureURL:
+    Value: !Join ["", ["https://", !GetAtt [S3Bucket, DomainName]]]
+    Description: Name of S3 bucket to hold website content
+Transform: AWS::Serverless-2016-10-31
