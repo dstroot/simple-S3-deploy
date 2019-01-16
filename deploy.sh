@@ -13,11 +13,13 @@ aws cloudformation deploy                     \
     --parameter-overrides Name=$BUCKET
 
 # setup package.json to deploy
-echo -e "All done! Now add these lines to your package.json"
+echo -e "\nAll done! Now add these lines to your package.json"
 echo -e 'file in the "scripts" section:\n'
 
+echo -e '---'
 echo -e '"predeploy": "yarn build",'
 echo -e '"deploy": "aws s3 sync build/ s3://'$BUCKET'"'
+echo -e '---'
 
-echo -e "\nThe URL is:"
+echo -e "\nThe hosting URL is:"
 echo -e "http://"$BUCKET".s3-website-"$REGION".amazonaws.com\n"
