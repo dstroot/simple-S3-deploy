@@ -12,7 +12,7 @@ Steps:
 Boom! You are done. You can update your SPA project's `package.json` file to perform the actual upload. See the **output** of the deploy script. Modify your scripts section like so:
 
 ```json
-"scripts": {
+"scripts": {   
   "start": "react-scripts start",
   "build": "react-scripts build",
   "test": "react-scripts test",

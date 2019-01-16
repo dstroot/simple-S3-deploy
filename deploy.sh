@@ -6,10 +6,10 @@ PROJECT=aws-s3-hosting
 BUCKET=$PROJECT-90278
 
 # Create bucket using cloudformation
-aws cloudformation deploy                     \
+aws cloudformation deploy             \
     --template-file s3hosting.yaml    \
-    --stack-name $PROJECT                     \
-    --capabilities CAPABILITY_IAM             \
+    --stack-name $PROJECT             \
+    --capabilities CAPABILITY_IAM     \
     --parameter-overrides Name=$BUCKET
 
 # setup package.json to deploy
