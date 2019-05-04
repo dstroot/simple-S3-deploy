@@ -2,7 +2,7 @@
 
 # S3 bucket names must be unique
 REGION=us-west-2
-PROJECT=aws-s3-hosting
+PROJECT=accord-capabilities
 BUCKET=$PROJECT-90278
 
 # Create bucket using cloudformation
